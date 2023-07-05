@@ -66,14 +66,18 @@ curl_setopt_array($curl, [
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
-
+$data =json_decode($response);
 curl_close($curl);
 
-if ($err) {
+if ($err ) {
   echo "cURL Error #:" . $err;
-} else {
+} elseif(isset ($data->detail)) {
 
-$data =json_decode($response);
+  echo 'this is error message from zid server  ('. $data->detail.')';
+  exit;
+}else{
+
+
 
 echo '<div style="text-align: center; font-size: 48px; margin-top: 200px; color :green">Success</div>';
 exit;
