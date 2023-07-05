@@ -33,6 +33,7 @@ curl_setopt_array($curl, [
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
+  //this is poseted body values
   CURLOPT_POSTFIELDS => json_encode([
     'name' => [
         'ar' => $product_name_ar,
@@ -87,60 +88,11 @@ exit;
 
 ?>
 
-<div class="container">
-
-<form  method="POST">
-  <label for="product_name_ar">اسم المنتج (بالعربية):</label>
-  <input type="text" name="product_name_ar" id="product_name_ar" required><br>
-
-  <label for="product_name_en">Product Name (in English):</label>
-  <input type="text" name="product_name_en" id="product_name_en" required><br>
-
-  <label for="product_discription">وصف المنتج:</label>
-  <textarea name="product_discription" id="product_discription"></textarea><br>
-
-  <label for="price">السعر:</label>
-  <input type="text" name="price" id="price" required><br>
-
-  <label for="sale_price">سعر البيع:</label>
-  <input type="text" name="sale_price" id="sale_price"><br>
-
-  <label for="quantity">الكمية:</label>
-  <input type="text" name="quantity" id="quantity" required><br>
-
-  <label for="requires_shipping">تتطلب الشحن؟</label>
-  <input type="checkbox" name="requires_shipping" id="requires_shipping" value="1"><br>
-
-  <label for="is_taxable">خاضعة للضريبة؟</label>
-  <input type="checkbox" name="is_taxable" id="is_taxable" value="1"><br>
-
-  <label for="is_infinite">غير محدودة؟</label>
-  <input type="checkbox" name="is_infinite" id="is_infinite" value="1"><br>
-
-  <label for="has_options">لها خيارات؟</label>
-  <input type="checkbox" name="has_options" id="has_options" value="1"><br>
-
-  <label for="has_fields">لها حقول؟</label>
-  <input type="checkbox" name="has_fields" id="has_fields" value="1"><br>
-
-  <label for="is_draft">هل ستحتفظ بالمنتج في المسودة؟</label>
-  <input type="checkbox" name="is_draft" id="is_draft" value="1"><br>
-
-  <label for="store_id">من فضلك ضع رقم المتجر <div class="tooltip">[؟]
-  <span class="tooltiptext">قم بتسجيل الدخول إلى حسابك في https://web.zid.sa/ ستجد رقم المتجر أسفل الإسم واللوجو في أعلى القائمة الرئيسية</span>
-</div></label>
-  <input type="text" name="store_id" id="store_id" required><br>
-
-  <label for="store_id">من فضلك اثبت هويتك  <div class="tooltip">  [؟]
-  <span class="tooltiptext">قم بالدخول إلى حسابك على https://web.zid.sa/ بعد ذلك إذهب إلى الإعدادات ومن ثم اذهب إلى مربع الربط مع الخدمات في خانة معلومات الربط قم بإنشاء رمز مصادقة </span>
-</div></label> 
-  <textarea name="manager_token" id="manager_token" placeholder="ضع رمز المصادقة Manager Token" required></textarea><br>
-
-  <input type="submit" name="submit" value="إنشاء المنتج">
-</form>
-</div>
-
-<style>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Product</title>
+    <style>
   body {
   display: flex;
   justify-content: center;
@@ -149,6 +101,7 @@ exit;
   background-color: #f9f9f9;
   text-align: right;
   direction: rtl;
+
 }
 
 .container {
@@ -214,7 +167,87 @@ input[type="submit"]:hover {
   visibility: visible;
 }
 
+.home-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .home-button:hover {
+    background-color: #45a049;
+  }
+
+
 </style>
+</head>
+<body>
+
+<div class="container">
+
+<form  method="POST">
+  <label for="product_name_ar">اسم المنتج (بالعربية):</label>
+  <input type="text" name="product_name_ar" id="product_name_ar" required><br>
+
+  <label for="product_name_en">Product Name (in English):</label>
+  <input type="text" name="product_name_en" id="product_name_en" required><br>
+
+  <label for="product_discription">وصف المنتج:</label>
+  <textarea name="product_discription" id="product_discription"></textarea><br>
+
+  <label for="price">السعر:</label>
+  <input type="text" name="price" id="price" required><br>
+
+  <label for="sale_price">سعر البيع:</label>
+  <input type="text" name="sale_price" id="sale_price"><br>
+
+  <label for="quantity">الكمية:</label>
+  <input type="text" name="quantity" id="quantity" required><br>
+
+  <label for="requires_shipping">تتطلب الشحن؟</label>
+  <input type="checkbox" name="requires_shipping" id="requires_shipping" value="1"><br>
+
+  <label for="is_taxable">خاضعة للضريبة؟</label>
+  <input type="checkbox" name="is_taxable" id="is_taxable" value="1"><br>
+
+  <label for="is_infinite">غير محدودة؟</label>
+  <input type="checkbox" name="is_infinite" id="is_infinite" value="1"><br>
+
+  <label for="has_options">لها خيارات؟</label>
+  <input type="checkbox" name="has_options" id="has_options" value="1"><br>
+
+  <label for="has_fields">لها حقول؟</label>
+  <input type="checkbox" name="has_fields" id="has_fields" value="1"><br>
+
+  <label for="is_draft">هل ستحتفظ بالمنتج في المسودة؟</label>
+  <input type="checkbox" name="is_draft" id="is_draft" value="1"><br>
+
+  <label for="store_id">من فضلك ضع رقم المتجر <div class="tooltip">[؟]
+  <span class="tooltiptext">قم بتسجيل الدخول إلى حسابك في https://web.zid.sa/ ستجد رقم المتجر أسفل الإسم واللوجو في أعلى القائمة الرئيسية</span>
+</div></label>
+  <input type="text" name="store_id" id="store_id" required><br>
+
+  <label for="store_id">من فضلك اثبت هويتك  <div class="tooltip">  [؟]
+  <span class="tooltiptext">قم بالدخول إلى حسابك على https://web.zid.sa/ بعد ذلك إذهب إلى الإعدادات ومن ثم اذهب إلى مربع الربط مع الخدمات في خانة معلومات الربط قم بإنشاء رمز مصادقة </span>
+</div></label> 
+  <textarea name="manager_token" id="manager_token" placeholder="ضع رمز المصادقة Manager Token" required></textarea><br>
+
+  <input type="submit" name="submit" value="إنشاء المنتج">
+</form>
+</div>
+
+
+<a class="home-button" href="index.php">عودة للرئيسية</a>
+
+</body>
+
+</html>
 
 
 

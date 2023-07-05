@@ -3,13 +3,14 @@
 
 function Products_list(){
 $store_id = isset ($_GET['store_id'])? $_GET['store_id']: '';
-$page_size = isset ( $_GET['page_size'])?  $_GET['page_size'] : 10;
-$page_num = isset ($_GET['page_num'])? $_GET['page_num'] : 1 ;
+$page_size = isset ( $_GET['page_size'])?  $_GET['page_size'] : "10";
+$page_num = isset ($_GET['page_num'])? $_GET['page_num'] : "1" ;
 $att_values = isset($_GET['att_values'])? $_GET['att_values'] : '+';
 
    $curl = curl_init();
-  $url ="https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values ;
+ // $url ="https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values ;
    curl_setopt_array($curl, [
+    //this is query prametter
      CURLOPT_URL => "https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values,
      CURLOPT_RETURNTRANSFER => true,
      CURLOPT_ENCODING => "",
@@ -97,6 +98,26 @@ $att_values = isset($_GET['att_values'])? $_GET['att_values'] : '+';
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+      
+  .home-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .home-button:hover {
+    background-color: #45a049;
+  }
+
+
     </style>
 </head>
 <body>
@@ -118,5 +139,8 @@ $att_values = isset($_GET['att_values'])? $_GET['att_values'] : '+';
 
         <input type="submit" name="submit" value="Get Products">
     </form>
+
+    <a class="home-button" href="index.php">عودة للرئيسية</a>
+
 </body>
 </html>
