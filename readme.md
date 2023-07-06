@@ -1,5 +1,5 @@
-## Zid Test 1
-
+## Zid Test 1 
+##### (Add Products and coupons)
 As a Technical Product Specialist, it is essential to determine the best approach for integrating with the Zid system to facilitate the development process for application developers (partners). In this task, we will analyze the required features and provide the necessary endpoints, request bodies, and header variables for each feature.
 
 #### 1- Adding a New Product to Zid:
