@@ -4,12 +4,12 @@ As a Technical Product Specialist, it is essential to determine the best approac
 
 #### 1- Adding a New Product to Zid:
  
-in this part, I used this flowing endpoint
+For this part, I utilized the following endpoint:
 
     https://api.zid.sa/v1/products/
 
-and use 12 variables in the body and two variables in the headers.
-the body variables are: 
+In the request body, I utilized 12 variables and 2 variables in the headers. The body variables are as follows:
+
 
 * $product_name_ar 
 * $product_name_en 
@@ -24,49 +24,47 @@ the body variables are:
 * $has_fields
 * $is_draft
 
-Of course not all variables are required but names in Arabic and English and price sure required for example.
+While not all variables are required, the product name in Arabic and English, as well as the price, are essential.
 
-after that I use authentication with two variables are :
+Authentication is implemented using two variables:
 
 * $store_id.
 * $manager_token
 
-if authentication is right and the required variables are right the product will create.
-
+If the authentication is successful and the required variables are correct, the product will be created.
 
 #### 2- Getting a List of Newly Added Products from Merchants in Zid:
 
-in this part i use the flowing endpoint 
+For this part, I utilize the following endpoint:
 
     https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values
 
-as you see this URL contains 3 query parameters if I send request with those parameters and add it to the store id header I can see the response with products.
+As you can see, this URL contains three query parameters. By sending a request with these parameters and including the store ID in the header, I can retrieve the response with the products.
 
-the parameters are used:
+The utilized parameters are:
 
 * $page_size
 * $page_num
 * $att_values
 
-the header variable only :
+The header variable used is:
 
 * $store_id
 
-the only varible reuqire is $store_id, other varible is optinal
+Only the $store_id variable is required, while the others are optional.
 
-    notes:
-    It might be a good idea to add  authentication 
-    so that no one but the store 
-    the owner can tamper with the requests
+    Notes:
+    It is recommended to implement authentication to
+    ensure that only the store owner can modify the requests.
 
 
 #### 3: Adding a New Coupon with a 10% Discount for a Custom Product
 
-I use this flowing endpoint in this part 
+For this part, I utilize the following endpoint:
 
     https://api.zid.sa/v1/managers/store/coupons/add
 
-and use 12 variables in posted body :
+In the request body, I use 12 variables:
 
 * $coupon_name 
 * $coupon_code 
@@ -81,28 +79,25 @@ and use 12 variables in posted body :
 * $uses_customer 
 * $status 
 
-the following variable is missing 
+One variable is missing, which is "apply_to_array". However, since it does not work properly, I use "apply_to" without a variable and set it as fixed, like this:
 
-* apply_to_array
-but I tested it and it does not work so I use (apply_to) without variable and make it fixed  like this:
+    apply_to = products
 
-        apply_to = products
+This makes the coupon applicable to custom products assigned to it.
 
-this makes coupon applied to custom products you assign to it.
-
-I use also in headers one variable is:
+In the headers, I also include one variable:
 
 * $manager_token
 
-to authentication.
+for authentication purposes.
 
-if I send this request with these variables in the body and token in the headers I will see response as wrong or true according to the data.
+By sending a request with these variables in the body and the token in the headers, I will receive a response indicating the success or failure of the operation.
 
-###### To help you understand the implementation, I have provided a sample PHP code in the index.php and three php other files, which is included in the project. Follow the steps below to use the files:
+###### To assist you in understanding the implementation, I have provided a sample PHP code in the index.php file and three additional PHP files included in the project. Follow the steps below to use the files:
 
 * Create a project folder on your Apache or PHP server and name it, for example, "zid-test".
-* paste index.php and other php files into the project folder.
+* Paste the index.php file and the other PHP files into the project folder.
 * Open your web browser and enter the URL for your host and project, e.g., "yourHost/projectName".
 * Start using the application and enjoy!
 
-Please note that the code is only a sample, and you may need to modify it to fit your specific requirements and environment.
+Please note that the provided code is only a sample, and you may need to modify it to meet your specific requirements and environment.
