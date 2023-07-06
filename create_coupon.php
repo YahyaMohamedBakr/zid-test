@@ -9,8 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 function create_coupon(){
  
-
+      //authentication token
       $manager_token = isset ($_POST['manager_token'])? $_POST['manager_token'] :'' ;
+
+      //coupon details posted in body
       $coupon_name = isset ($_POST['coupon_name'])? $_POST['coupon_name']: '' ;
       $coupon_code = isset($_POST['coupon_code']) ? $_POST['coupon_code']:'';
       $discount_type = isset($_POST['$discount_type'])? "f" : "p";
@@ -24,7 +26,7 @@ function create_coupon(){
       $uses_customer = $_POST['uses_customer'];
       $status = isset($_POST['active'])? "1": "0";
 
-      // if (isset($_POST['submit'])){
+      
         $curl = curl_init();
         curl_setopt_array($curl, [
           CURLOPT_URL => "https://api.zid.sa/v1/managers/store/coupons/add",
@@ -46,7 +48,7 @@ function create_coupon(){
   
         $response = curl_exec($curl);
         $err = curl_error($curl);
-      // }
+     
       
       $data = json_decode($response);
 
@@ -67,18 +69,6 @@ function create_coupon(){
 }
 
 
-// elseif(isset ($coupon->status) && $coupon->status == "error"){
-//   echo 'this is error message from zid server  ('.$data->message['3'].')';
-//         exit;
-// }
-
-// $coupon = create_coupon();
-// echo $coupon->message;
-// if(isset ($coupon->status) && $coupon->status == "object"){
-//   echo '<div style="text-align: center; font-size: 48px; margin-top: 200px; color :green">Success</div>';
-//         exit;
-// }elseif(!isset($_POST['submit'])){
-//   
 
 
 ?>

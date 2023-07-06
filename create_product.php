@@ -7,8 +7,12 @@ if (isset($_POST['submit'])){
 
 
 function create_product(){
+
+//authentication token and store id 
 $store_id = $_POST['store_id'];
 $manager_token = $_POST['manager_token'];
+
+//product values posted in body
 $product_name_ar = $_POST['product_name_ar'];
 $product_name_en = $_POST['product_name_en'];
 $product_discription = $_POST['product_discription'];

@@ -2,6 +2,8 @@
 <?php
 
 function Products_list(){
+
+
 $store_id = isset ($_GET['store_id'])? $_GET['store_id']: '';
 $page_size = isset ( $_GET['page_size'])?  $_GET['page_size'] : "10";
 $page_num = isset ($_GET['page_num'])? $_GET['page_num'] : "1" ;
@@ -10,7 +12,7 @@ $att_values = isset($_GET['att_values'])? $_GET['att_values'] : '+';
    $curl = curl_init();
  // $url ="https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values ;
    curl_setopt_array($curl, [
-    //this is query prametter
+    //this is query parameters
      CURLOPT_URL => "https://api.zid.sa/v1/products/?page_size=".$page_size."&page=".$page_num."&attribute_values=".$att_values,
      CURLOPT_RETURNTRANSFER => true,
      CURLOPT_ENCODING => "",
