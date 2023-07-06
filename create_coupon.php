@@ -18,10 +18,10 @@ function create_coupon(){
       $free_shipping = isset ($_POST['free_shipping'])? "1" : "0";
       $free_cod = isset  ($_POST['free_cod'])? "1" : "0";
       $total = isset  ($_POST['total'])? $_POST['total']:'';
-      @$date_start = $_POST['date_start'];
-     @ $date_end = $_POST ['date_end'];
-      @$uses_total = $_POST['uses_total'];
-     @ $uses_customer = $_POST['uses_customer'];
+      $date_start = $_POST['date_start'];
+      $date_end = $_POST ['date_end'];
+      $uses_total = $_POST['uses_total'];
+      $uses_customer = $_POST['uses_customer'];
       $status = isset($_POST['active'])? "1": "0";
 
       // if (isset($_POST['submit'])){
@@ -48,14 +48,20 @@ function create_coupon(){
         $err = curl_error($curl);
       // }
       
-     @ $data = json_decode($response);
+      $data = json_decode($response);
 
-      @curl_close($curl);
+      curl_close($curl);
 
-      if (@$err) {
+      if ($err ) {
         echo "cURL Error #:" . $err;
-      } else{
-        return $data;
+      } elseif($data->status !== "object"){
+        echo 'this is error message from zid server  ('.$data->message->name.')';
+        exit;
+      }
+      elseif( $data->status == "object"){
+        echo '<div style="text-align: center; font-size: 48px; margin-top: 200px; color :green">Success</div>';
+        exit;
+        // return $data;
       }
 
 }
@@ -66,13 +72,16 @@ function create_coupon(){
 //         exit;
 // }
 
-$coupon = create_coupon();
+// $coupon = create_coupon();
 // echo $coupon->message;
-if(isset ($coupon->status) && $coupon->status == "object"){
-  echo '<div style="text-align: center; font-size: 48px; margin-top: 200px; color :green">Success</div>';
-        exit;
-}elseif(!isset($_POST['submit'])){
-  ?>
+// if(isset ($coupon->status) && $coupon->status == "object"){
+//   echo '<div style="text-align: center; font-size: 48px; margin-top: 200px; color :green">Success</div>';
+//         exit;
+// }elseif(!isset($_POST['submit'])){
+//   
+
+
+?>
 
 
 
@@ -247,11 +256,9 @@ if(isset ($coupon->status) && $coupon->status == "object"){
       <textarea name="manager_token" id="manager_token" placeholder="ضع رمز المصادقة Manager Token" required></textarea><br>
 
       <div class="form-group">
-        <button type="submit">إرسال</button>
+        <button type="submit" name="submit">إرسال</button>
       </div>
     </form>
   </div>
 </body>
 </html>
-<?php
-}?>
